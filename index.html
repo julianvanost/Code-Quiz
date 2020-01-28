@@ -29,7 +29,7 @@
           <div class="">
             <div class="timer" id="game-timer">240</div>
             <div class="" id="question-container" class="question-border">Question: </div>
-            <div class="row">
+            <div class="list-group">
               <div class="col-md-6 col-md-offset-3">
                 <div class="text-center" id="answers-container">
                   <div class="answer" data-content="1000">I am an answer.</div>
@@ -41,56 +41,55 @@
             </div>
           </div>
         </div>
-        <div class=" top-buffer">
+        <div class="top-buffer">
           <div class="">
             <div class="well" id="answer-response">I am the explanation to the answer.</div>
           </div>
         </div>
         <hr>
-
-        <footer>
-          <div class="">
-            <div class="">
-              <button class="btn btn-primary pull-left" id="previousQ">&nbsp;Previous&nbsp;</button>
-              <button class="btn btn-primary pull-right"
-                id="nextQ">&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;</button>
-              <button class="btn btn-primary pull-right" id="finish">&nbsp;&nbsp;Finish&nbsp;&nbsp;</button>
-            </div>
-          </div>
-        </footer>
       </div>
-
-      <div id="results-display" class="top-buffer">
+      <footer>
         <div class="">
           <div class="">
-            <h4>Your Results!</h4>
-            <div class="well" id="answerHistory">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Question</th>
-                    <th>You answered</th>
-                    <th>Correct answer</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody id="result-rows">
-                </tbody>
-              </table>
-            </div>
+            <button class="btn btn-primary pull-left" id="previousQ">Back</button>
+            <button class="btn btn-primary pull-right" id="nextQ">Next</button>
+            <button class="btn btn-primary pull-right" id="finish">Finish</button>
           </div>
         </div>
-        <div class="row">
-          <div class="">
-            <button id="restart" class="btn btn-lg btn-primary">Restart</button>
+      </footer>
+    </div>
+
+    <div id="results-display" class="top-buffer">
+      <div class="">
+        <div class="">
+          <h4>Your Results!</h4>
+          <div class="well" id="answerHistory">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Question</th>
+                  <th>You answered</th>
+                  <th>Correct answer</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="result-rows">
+              </tbody>
+            </table>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="">
+          <button id="restart" class="btn btn-lg btn-primary">Restart</button>
         </div>
       </div>
     </div>
-  </body>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script type="text/javascript" src="./source.js"></script>
+  </div>
+</body>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script type="text/javascript" src="./source.js"></script>
 
 </html>

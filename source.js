@@ -1,3 +1,10 @@
+$('.grid').masonry({
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true
+});
+
+
 $(document).ready(function () {
   $("#main-game").hide();
   $("#results-display").hide();
@@ -8,7 +15,7 @@ $(document).ready(function () {
 
 var quesIndex;
 var gameTimer;
-var timeAllotted = 30; //seconds
+var timeAllotted = 240; //seconds
 var questionBank = [
   {
     question: `What will the output of the following code be? ` + `<br><code class="code">let a = 8<br>let b = 6 <br>let c = 9<br>console.log(a*(b+c))</code>`,
@@ -44,18 +51,18 @@ var questionBank = [
     selected: null,
     // reason: "Martin Van Buren was born in December 5th, 1782 in Kinderhook, NY. The first president not born under British rule and the first president not of British ancestry. He was of Dutch lineage."
   }, {
-    question: "Which was not a part of the original 13 colonies?",
+    question: "Which is correct?",
     answers: [
-      { ansID: 1011, answer: "Vermont" },
-      { ansID: 1012, answer: "Georgia" },
-      { ansID: 1012, answer: "North Carolina" },
-      { ansID: 1013, answer: "Pennsylvania" },
+      { ansID: 1011, answer: "one" },
+      { ansID: 1012, answer: "two" },
+      { ansID: 1012, answer: "three" },
+      { ansID: 1013, answer: "four" },
     ],
     correct: 1011,
     selected: null,
     // reason: "Vermont was the 14th state which joined on March 4th, 1791."
   }, {
-    question: "How many time zones does the USA have?",
+    question: "which is correct?",
     answers: [
       { ansID: 1014, answer: "Three" },
       { ansID: 1015, answer: "Four" },
@@ -117,12 +124,12 @@ function processAnswer() {
   }
 
   // $("#answer-response").append(questionBank[quesIndex].reason);
-  // $("#answer-response").show();
+  $("#answer-response").show();
 
-  //save the answer the user selected in the questionBank
+
   questionBank[quesIndex].selected = selectedAnsID;
 
-  console.log(questionBank[quesIndex].selected);
+  // console.log(questionBank[quesIndex].selected);
 }
 
 
@@ -140,21 +147,13 @@ $("#start").on("click", function () {
   $("#splash-screen").hide();
   $("#main-game").show();
 
-  gameTimer = setInterval(updateClock, 100000);
+  gameTimer = setInterval(updateClock, 1000);
 
   quesIndex = 0;
   populateQuestionDetails(quesIndex);
 });
 
-/*
-Here's a neat trick: for elements that are dynamically created existing handlers pointed to that type of element (via class or id, whichever) will not be automatically bound. Instead of $("[.|#]identifier").on("click", function) bind it to the document for it's id/class as shown below.
-*/
 $(document).on("click", ".answer", processAnswer);
-
-// $('.answer').on('click', function () {
-//   $('.answer').removeClass('active');
-//   $(this).addClass('active');
-// });
 
 $("#previousQ").on("click", getPreviousQuestion);
 
@@ -165,6 +164,7 @@ $("#finish").on("click", endGame);
 function endGame() {
   $("#main-game").hide();
   processResults();
+  $(".jumbotron").hide()
   $("#results-display").show();
 }
 
@@ -186,9 +186,7 @@ function processResults() {
       incorrect++;
       status = "Incorrect!";
     }
-
     if (questionBank[i].selected !== null) {
-      //get selected text
       var selectedText = "NA";
       for (var j = 0; j < questionBank[i].answers.length; j++) {
         if (questionBank[i].answers[j].ansID === questionBank[i].selected) {
@@ -199,7 +197,6 @@ function processResults() {
     } else {
       selectedText = "--";
     }
-    //get correct ans text
     var correctText = "NA";
     for (var k = 0; k < questionBank[i].answers.length; k++) {
       if (questionBank[i].answers[k].ansID === questionBank[i].correct) {
@@ -207,7 +204,6 @@ function processResults() {
         break;
       }
     }
-
     $("#result-rows").append("<tr><td>" + questionBank[i].question + "</td><td>" + selectedText + "</td><td>" + correctText + "</td><td>" + status + "</td></tr>");
   }
 
