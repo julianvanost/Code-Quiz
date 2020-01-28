@@ -1,145 +1,96 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="./Assets/css/styles.css" type="text/css">
+  <link rel="stylesheet" href="./overrides.css" type="text/css">
   <title>Code Quiz</title>
 </head>
 
 <body>
   <div class="container">
-    <div class="jumbotron"><span class="show navbar-text countdown-tooltip" id="countDown">100</span>
-      <h2 class="h1-responsive">Press begin when ready, try to questions before timer runs out.</h2>
-      <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
-        to featured content or information.</p>
+    <div class="jumbotron">
+      <h2 class="h1-responsive">Simple Code Quiz About Front-End Web Development</h2>
       <hr class="my-2">
-      <p>It uses utility classes for typography and spacing to space content out within the larger
-        container.
+      <p>You have 240 seconds (three minutes) once you begin. There will 10 questions to answer.
       </p>
-      <a class="btn btn-primary btn-lg" role="button">Learn more</a>
-    </div>
-    <div class="grid">
-      <h1 class="my-4 font-weight-bold"></h1>
-      <div class="grid-sizer col-md-3"></div>
-      <div class="grid-item col-md-6 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Panel title</h5>
-            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
-              <button type="button" class="btn btn-amber">Button</button>
-              <button type="button" class="btn btn-amber">Button</button>
-              <button type="button" class="btn btn-amber">Button</button>
-              <button type="button" class="btn btn-amber">Button</button>
-              <button type="button" class="btn btn-amber">Button</button>
-              <button type="button" class="btn btn-amber">Button</button>
+      <div id="splash-screen" class="top-buffer">
+        <div class="">
+          <div class="">
+            <button id="start" class="btn btn-primary btn-lg">Begin Quiz</button>
+          </div>
+        </div>
+      </div>
+      <div id="main-game">
+        <div class="">
+          <div class="">
+            <div class="timer" id="game-timer">240</div>
+            <div class="" id="question-container" class="question-border">Question: </div>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="text-center" id="answers-container">
+                  <div class="answer" data-content="1000">I am an answer.</div>
+                  <div class="answer" data-content="1001">I am an answer.</div>
+                  <div class="answer" data-content="1002">I am an answer.</div>
+                  <div class="answer" data-content="1003">I am an answer.</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <button id="submitAnswer" class="subButt btn hvr-bounce-to-bottom">Submit Answer</button>
-        <!-- <div class="grid-item col-md-3 mb-4">
-       <div class="card">
-         <div class="card-body">
-           This is some text within a panel body.
-         </div>
-       </div>
-     </div>
-     <div class="grid-item col-md-3 mb-4">
-       <div class="card">
-         <div class="card-body">
-           <h5 class="card-title">Panel title</h5>
-           <h6 class="card-subtitle mb-2 text-muted">Panel subtitle</h6>
-           <p class="card-text">Some quick example text to build on the panel title and make up the bulk of the panel's
-             content.</p>
-           <a href="#!" class="card-link mr-3">Card link</a>
-           <a href="#!" class="card-link ml-0">Another link</a>
-         </div>
-       </div>
-     </div>
-     <div class="grid-item col-md-6 mb-4">
-       <div class="card">
-         <div class="card-header">
-           Quote
-         </div>
-         <div class="card-body">
-           <blockquote class="blockquote mb-0">
-             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-             <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer>
-           </blockquote>
-         </div>
-       </div>
-     </div>
-     <div class="grid-item col-md-3 mb-4">
-       <div class="card">
-         <ul class="list-group list-group-flush">
-           <li class="list-group-item">Cras justo odio</li>
-           <li class="list-group-item">Dapibus ac facilisis in</li>
-           <li class="list-group-item">Vestibulum at eros</li>
-         </ul>
-       </div>
-     </div>
-     <div class="grid-item col-md-3 mb-4">
-       <div class="card">
-         <div class="card-body">
-           <h5 class="font-weight-bold mb-3">Panel title</h5>
-           <p class="mb-0">Some quick example text to build on the panel title and make up the bulk of the panel's
-             content.</p>
-         </div>
-         <ul class="list-group list-group-flush">
-           <li class="list-group-item">Cras justo odio</li>
-           <li class="list-group-item">Dapibus ac facilisis in</li>
-           <li class="list-group-item">Vestibulum at eros</li>
-         </ul>
-         <div class="card-body">
-           <a href="#!" class="card-link mr-3">Card link</a>
-           <a href="#!" class="card-link ml-0">Another link</a>
-         </div>
-       </div>
-     </div>
-     <div class="grid-item col-md-3 mb-4">
-       <div class="card">
-         <div class="card-header">
-           Featured
-         </div>
-         <div class="card-body">
-           <h5 class="card-title">Special title treatment</h5>
-           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-           <button id="submitAnswer" class="btn hvr-bounce-to-bottom">Submit Answer</button>
-         </div>
-       </div>
-     </div> -->
+        <div class=" top-buffer">
+          <div class="">
+            <div class="well" id="answer-response">I am the explanation to the answer.</div>
+          </div>
+        </div>
+        <hr>
+
+        <footer>
+          <div class="">
+            <div class="">
+              <button class="btn btn-primary pull-left" id="previousQ">&nbsp;Previous&nbsp;</button>
+              <button class="btn btn-primary pull-right"
+                id="nextQ">&nbsp;&nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;&nbsp;</button>
+              <button class="btn btn-primary pull-right" id="finish">&nbsp;&nbsp;Finish&nbsp;&nbsp;</button>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <div id="results-display" class="top-buffer">
+        <div class="">
+          <div class="">
+            <h4>Your Results!</h4>
+            <div class="well" id="answerHistory">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Question</th>
+                    <th>You answered</th>
+                    <th>Correct answer</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="result-rows">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="">
+            <button id="restart" class="btn btn-lg btn-primary">Restart</button>
+          </div>
+        </div>
       </div>
     </div>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"> -->
-    </script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="./Assets/js/source.js"></script>
-    <script>
-      let add = 0
-      document.addEventListener('click', function (event) {
-        if (event.target.className === "numBtn") {
-          add += parseInt(event.target.value)
-          document.getElementById('add').textContent = add
-        }
-      })
-
-      let countDown = 100
-      document.addEventListener('click', function (event) {
-        if (event.target.className === "numBtn") {
-          countDown = parseInt(event.target.value)
-          document.getElementById('countDown').textContent = countDown
-        }
-      })
-
-      document.onkeyup = function (event) {
-        console.log(event)
-      }
-    </script>
+  </body>
+  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script type="text/javascript" src="./source.js"></script>
 
 </html>
