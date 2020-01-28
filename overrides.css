@@ -1,7 +1,20 @@
 /* body {
   background-color: #333;
 } */
-
+#results-display,
+#main-game,
+#previousQuestion,
+#nextQuestion,
+#finish {
+  display: none;
+}
+.jumbotron {
+  margin-top: 1rem;
+  border-radius: 3.3rem;
+}
+.btn-primary {
+  font-size: large;
+}
 .timer {
   color: #f17e47;
   font-weight: bold;
@@ -27,8 +40,8 @@
   font-weight: 500;
   cursor: pointer;
   border: 1px solid #000;
-  margin: 1.5rem !important;
-  padding: 1.5rem !important;
+  margin: 0.5rem !important;
+  padding: 0.5rem !important;
 
 }
 
@@ -39,7 +52,7 @@
 
 @media (min-width: 1200px) {
   .container {
-    max-width: 100%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     display: grid;
@@ -113,7 +126,9 @@ h1 {
 }
 
 .answer:focus {
-  outline: -webkit-focus-ring-color auto 1px;
+      outline: 2px solid #f1824d;
+      outline-offset: 1px;
+      outline-style: groove;
 }
 
 [class^="hvr-"] {
@@ -135,15 +150,9 @@ h1 {
   transform: scaleY(1);
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  
 }
 
-.focus:focus {
-  color: red;
-}
-
-.focus:target {
-  color: red;
-}
 
 .answer:before {
   content: "";

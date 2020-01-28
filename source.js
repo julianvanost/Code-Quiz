@@ -6,19 +6,20 @@ $('.grid').masonry({
 
 
 $(document).ready(function () {
-  $("#main-game").hide();
   $("#results-display").hide();
-  $("#previousQ").hide();
-  $("#nextQ").hide();
+  $("#main-game").hide();
+  $("#previousQuestion").hide();
+  $("#nextQuestion").hide();
   $("#finish").hide();
 });
 
-var quesIndex;
+var quesionIndex;
 var gameTimer;
 var timeAllotted = 240; //seconds
 var questionBank = [
   {
-    question: `What will the output of the following code be? ` + `<br><code class="code">let a = 8<br>let b = 6 <br>let c = 9<br>console.log(a*(b+c))</code>`,
+    question: `What will the output of the following code be? ` +
+      `<br><code class="code">let a = 8<br>let b = 6 <br>let c = 9<br>console.log(a*(b+c))</code>`,
     answers: [
       { ansID: 1000, answer: "23" },
       { ansID: 1001, answer: "57" },
@@ -51,23 +52,23 @@ var questionBank = [
     selected: null,
     // reason: "Martin Van Buren was born in December 5th, 1782 in Kinderhook, NY. The first president not born under British rule and the first president not of British ancestry. He was of Dutch lineage."
   }, {
-    question: "Which is correct?",
+    question: `What will the following Javascript output be? ` + `<br><code>var a, b = ""<br>a = 'string'<br>b = '90'<br>const d = 30<br>console.log(a + " - " + b + d)</code>`,
     answers: [
-      { ansID: 1011, answer: "one" },
-      { ansID: 1012, answer: "two" },
-      { ansID: 1012, answer: "three" },
-      { ansID: 1013, answer: "four" },
+      { ansID: 1011, answer: `'Undefined'` },
+      { ansID: 1012, answer: `'string-120'` },
+      { ansID: 1012, answer: `'string - 9030'` },
+      { ansID: 1013, answer: `'TypeError: Must be string not integer'` },
     ],
-    correct: 1011,
+    correct: 1012,
     selected: null,
     // reason: "Vermont was the 14th state which joined on March 4th, 1791."
   }, {
-    question: "which is correct?",
+    question: `Please calculate the following output: ` + `<br><code>user = 'Johnny'<br>for (i = 0; i < user.length; i++) {<br>&nbsp&nbsp&nbsp&nbsp console.log("User : " + i + " : ")<br>}<br><br><br>    </code>`,
     answers: [
-      { ansID: 1014, answer: "Three" },
-      { ansID: 1015, answer: "Four" },
-      { ansID: 1016, answer: "Five" },
-      { ansID: 1017, answer: "Six" },
+      { ansID: 1014, answer: `'User 5'` },
+      { ansID: 1015, answer: `'Undefined Undefined Undefined Undefined Undefined'` },
+      { ansID: 1016, answer: `'User: 1 : User: 2 : User: 3 : User: 4 : User: 5'` },
+      { ansID: 1017, answer: `'User: 0 : User: 1 : User: 2 : User: 3 : User: 4'` },
     ],
     correct: 1017,
     selected: null,
@@ -80,8 +81,8 @@ function populateQuestionDetails() {
   $("#question-container").empty();
   $("#answers-container").empty();
   $("#answer-response").empty();
-  $("#question-container").html(questionBank[quesIndex].question);
-  var quesAnswers = questionBank[quesIndex].answers;
+  $("#question-container").html(questionBank[quesionIndex].question);
+  var quesAnswers = questionBank[quesionIndex].answers;
   for (var i = 0; i < quesAnswers.length; i++) {
     $("#answers-container").append('<div class="answer" data-content="' + quesAnswers[i].ansID + '">' + quesAnswers[i].answer + '</div>');
   }
@@ -89,33 +90,33 @@ function populateQuestionDetails() {
 }
 
 function renderQuesControls() {
-  if (quesIndex === 0) {
-    $("#previousQ").hide();
-    $("#nextQ").show();
-  } else if (quesIndex === questionBank.length - 1) {
-    $("#previousQ").show();
-    $("#nextQ").hide();
+  if (quesionIndex === 0) {
+    $("#previousQuestion").hide();
+    $("#nextQuestion").show();
+  } else if (quesionIndex === questionBank.length - 1) {
+    $("#previousQuestion").show();
+    $("#nextQuestion").hide();
     $("#finish").show();
   } else {
-    $("#previousQ").show();
-    $("#nextQ").show();
+    $("#previousQuestion").show();
+    $("#nextQuestion").show();
   }
-  // console.log("quesIndex: " + quesIndex + " length: " + questionBank.length);
+  // console.log("quesionIndex: " + quesionIndex + " length: " + questionBank.length);
 }
 
 function getPreviousQuestion() {
-  quesIndex--;
+  quesionIndex--;
   populateQuestionDetails();
 }
 
 function getNextQuestion() {
-  quesIndex++;
+  quesionIndex++;
   populateQuestionDetails();
 }
 
 function processAnswer() {
   var selectedAnsID = parseInt($(this).attr("data-content"));
-  var correctAnsID = questionBank[quesIndex].correct;
+  var correctAnsID = questionBank[quesionIndex].correct;
 
   if (selectedAnsID === correctAnsID) {
     $("#answer-response").html("<h4>Correct!</h4>");
@@ -123,13 +124,13 @@ function processAnswer() {
     $("#answer-response").html("<h4>Sorry that's not right.</h4>");
   }
 
-  // $("#answer-response").append(questionBank[quesIndex].reason);
+  // $("#answer-response").append(questionBank[quesionIndex].reason);
   $("#answer-response").show();
 
 
-  questionBank[quesIndex].selected = selectedAnsID;
+  questionBank[quesionIndex].selected = selectedAnsID;
 
-  // console.log(questionBank[quesIndex].selected);
+  // console.log(questionBank[quesionIndex].selected);
 }
 
 
@@ -149,17 +150,15 @@ $("#start").on("click", function () {
 
   gameTimer = setInterval(updateClock, 1000);
 
-  quesIndex = 0;
-  populateQuestionDetails(quesIndex);
+  quesionIndex = 0;
+  populateQuestionDetails(quesionIndex);
 });
 
 $(document).on("click", ".answer", processAnswer);
-
-$("#previousQ").on("click", getPreviousQuestion);
-
-$("#nextQ").on("click", getNextQuestion);
-
+$("#previousQuestion").on("click", getPreviousQuestion);
+$("#nextQuestion").on("click", getNextQuestion);
 $("#finish").on("click", endGame);
+
 
 function endGame() {
   $("#main-game").hide();
@@ -204,8 +203,9 @@ function processResults() {
         break;
       }
     }
+
+
     $("#result-rows").append("<tr><td>" + questionBank[i].question + "</td><td>" + selectedText + "</td><td>" + correctText + "</td><td>" + status + "</td></tr>");
+
   }
-
-
 }
