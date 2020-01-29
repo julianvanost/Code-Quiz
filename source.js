@@ -15,8 +15,8 @@ $(document).ready(function () {
 
 var quesionIndex;
 var gameTimer;
-var timeAllotted = 240; //seconds
-var questionBank = [
+var quizTime = 60; //seconds
+var questionObject = [
   {
     question: `What will the output of the following code be? ` +
       `<br><code class="code">let a = 8<br>let b = 6 <br>let c = 9<br>console.log(a*(b+c))</code>`,
@@ -81,8 +81,8 @@ function populateQuestionDetails() {
   $("#question-container").empty();
   $("#answers-container").empty();
   $("#answer-response").empty();
-  $("#question-container").html(questionBank[quesionIndex].question);
-  var quesAnswers = questionBank[quesionIndex].answers;
+  $("#question-container").html(questionObject[quesionIndex].question);
+  var quesAnswers = questionObject[quesionIndex].answers;
   for (var i = 0; i < quesAnswers.length; i++) {
     $("#answers-container").append('<div class="answer" data-content="' + quesAnswers[i].ansID + '">' + quesAnswers[i].answer + '</div>');
   }
@@ -93,7 +93,7 @@ function renderQuesControls() {
   if (quesionIndex === 0) {
     $("#previousQuestion").hide();
     $("#nextQuestion").show();
-  } else if (quesionIndex === questionBank.length - 1) {
+  } else if (quesionIndex === questionObject.length - 1) {
     $("#previousQuestion").show();
     $("#nextQuestion").hide();
     $("#finish").show();
@@ -101,7 +101,7 @@ function renderQuesControls() {
     $("#previousQuestion").show();
     $("#nextQuestion").show();
   }
-  // console.log("quesionIndex: " + quesionIndex + " length: " + questionBank.length);
+  // console.log("quesionIndex: " + quesionIndex + " length: " + questionObject.length);
 }
 
 function getPreviousQuestion() {
@@ -116,7 +116,7 @@ function getNextQuestion() {
 
 function processAnswer() {
   var selectedAnsID = parseInt($(this).attr("data-content"));
-  var correctAnsID = questionBank[quesionIndex].correct;
+  var correctAnsID = questionObject[quesionIndex].correct;
 
   if (selectedAnsID === correctAnsID) {
     $("#answer-response").html("<h4>Correct!</h4>");
@@ -124,21 +124,21 @@ function processAnswer() {
     $("#answer-response").html("<h4>Sorry that's not right.</h4>");
   }
 
-  // $("#answer-response").append(questionBank[quesionIndex].reason);
+  // $("#answer-response").append(questionObject[quesionIndex].reason);
   $("#answer-response").show();
 
 
-  questionBank[quesionIndex].selected = selectedAnsID;
+  questionObject[quesionIndex].selected = selectedAnsID;
 
-  // console.log(questionBank[quesionIndex].selected);
+  // console.log(questionObject[quesionIndex].selected);
 }
 
 
 
 function updateClock() {
-  timeAllotted--;
-  $("#game-timer").html(timeAllotted);
-  if (timeAllotted === 0) {
+  quizTime--;
+  $("#timeContainer").html(quizTime);
+  if (quizTime === 0) {
     clearInterval(gameTimer);
     endGame();
   }
@@ -177,19 +177,19 @@ function processResults() {
   var incorrect = 0;
   var score = 0;
 
-  for (var i = 0; i < questionBank.length; i++) {
-    if (questionBank[i].correct === questionBank[i].selected) {
+  for (var i = 0; i < questionObject.length; i++) {
+    if (questionObject[i].correct === questionObject[i].selected) {
       correct++;
       status = "Correct!";
     } else {
       incorrect++;
       status = "Incorrect!";
     }
-    if (questionBank[i].selected !== null) {
+    if (questionObject[i].selected !== null) {
       var selectedText = "NA";
-      for (var j = 0; j < questionBank[i].answers.length; j++) {
-        if (questionBank[i].answers[j].ansID === questionBank[i].selected) {
-          selectedText = questionBank[i].answers[j].answer;
+      for (var j = 0; j < questionObject[i].answers.length; j++) {
+        if (questionObject[i].answers[j].ansID === questionObject[i].selected) {
+          selectedText = questionObject[i].answers[j].answer;
           break;
         }
       }
@@ -197,15 +197,15 @@ function processResults() {
       selectedText = "--";
     }
     var correctText = "NA";
-    for (var k = 0; k < questionBank[i].answers.length; k++) {
-      if (questionBank[i].answers[k].ansID === questionBank[i].correct) {
-        correctText = questionBank[i].answers[k].answer;
+    for (var k = 0; k < questionObject[i].answers.length; k++) {
+      if (questionObject[i].answers[k].ansID === questionObject[i].correct) {
+        correctText = questionObject[i].answers[k].answer;
         break;
       }
     }
 
 
-    $("#result-rows").append("<tr><td>" + questionBank[i].question + "</td><td>" + selectedText + "</td><td>" + correctText + "</td><td>" + status + "</td></tr>");
+    $("#result-rows").append("<tr><td>" + questionObject[i].question + "</td><td>" + selectedText + "</td><td>" + correctText + "</td><td>" + status + "</td></tr>");
 
   }
 }

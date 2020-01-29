@@ -15,7 +15,7 @@
     <div class="jumbotron">
       <h2 class="h1-responsive">Simple Code Quiz About Front-End Web Development</h2>
       <hr class="my-2">
-      <p>You have 240 seconds (three minutes) once you begin. There will 10 questions to answer.
+      <p>You have 60 seconds (one minute) once you begin. There will 10 questions to answer.
       </p>
       <div id="splash-screen" class="top-buffer">
         <div>
@@ -27,7 +27,7 @@
       <div id="main-game">
         <div>
           <div>
-            <div class="timer" id="game-timer">240</div>
+            <div class="timer" id="timeContainer">60</div>
             <div id="question-container" class="question-border">Question: </div>
             <div class="list-group">
               <div class="col-md-6 col-md-offset-3">
@@ -58,7 +58,6 @@
         </div>
       </footer>
     </div>
-
     <div id="results-display" class="top-buffer">
       <div>
         <div>
@@ -76,12 +75,33 @@
               <tbody id="result-rows">
               </tbody>
             </table>
+            <div class="restartBtn">
+              <div>
+                <button id="restart" class="btn btn-primary">Restart</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Results Summary</button>
+              </div>
+            </div>
+            <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-notify modal-info" role="document">
+              Quiz Reults
+              <div class="modal-content text-center">
+                <!--Header-->
+                <div class="modal-header d-flex justify-content-center">
+                  <p class="heading">Your Summary</p>
+                </div>
+                <!-- Body -->
+                <div class="modal-body" id="resultSummary"> 
+                  
+                </div>
+                <!--Footer-->
+                <div class="modal-footer flex-center">
+                  <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Close</a>
+                </div>
+              </div>
+              <!--/.Content-->
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="restartBtn">
-        <div>
-          <button id="restart" class="btn btn-lg btn-primary">Restart</button>
+          </div>
         </div>
       </div>
     </div>

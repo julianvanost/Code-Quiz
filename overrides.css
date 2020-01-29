@@ -8,13 +8,16 @@
 #finish {
   display: none;
 }
+
 .jumbotron {
   margin-top: 1rem;
   border-radius: 3.3rem;
 }
+
 .btn-primary {
   font-size: large;
 }
+
 .timer {
   color: #f17e47;
   font-weight: bold;
@@ -126,9 +129,9 @@ h1 {
 }
 
 .answer:focus {
-      outline: 2px solid #f1824d;
-      outline-offset: 1px;
-      outline-style: groove;
+  outline: 2px solid #f1824d;
+  outline-offset: 1px;
+  outline-style: groove;
 }
 
 [class^="hvr-"] {
@@ -150,9 +153,19 @@ h1 {
   transform: scaleY(1);
   -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
-  
+
 }
 
+.btn-outline-info {
+  margin-bottom: -40px;
+  margin-right: -20px;
+}
+
+code {
+  text-align: left!important;
+  display: inline-grid!important;
+  padding: 10px!important;
+}
 
 .answer:before {
   content: "";
