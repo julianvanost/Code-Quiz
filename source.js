@@ -146,7 +146,6 @@ function countDown() {
       endGame();
     }
   }
-
 }
 
 $("#start").on("click", function () {
@@ -164,7 +163,7 @@ $("#finish").on("click", endGame);
 
 
 function endGame() {
-  gamecount = false;
+
   $("#main-game").hide();
   $(".jumbotron").hide()
 
@@ -173,18 +172,19 @@ function endGame() {
 
   let yourTime = parseInt(quizTime)
   console.log("Completion Time: " + yourTime)
-  let yourScore = $("#yourTime").text()
   $("#yourTime").text(yourTime)
   $("#yourTimeModal").text(yourTime)
 
-  let highScore = $("#yourTimeModal").text() // change this to yourScore
+  let highScore = yourTime // change this to yourScore
   let score = JSON.parse(localStorage.getItem('score')) || []
+
   const renderscore = _ => {
     document.getElementById('score').innerHTML = ''
     for (let i = 0; i < score.length; i++) {
       let itemElem = document.createElement('li')
-      itemElem.className = score[i].score ? 'complete' : 'incomplete'
-      itemElem.innerHTML = `Name: <b>${score[i].text}</b>  -  Highscore: <b>${highScore}</b>`
+      // itemElem.className = score[i].score ? 'complete' : 'incomplete'
+
+      itemElem.innerHTML = `Name: <b>${score[i].text}</b>  -  Highscore: <b>${score[i].highScore}</b>`
       document.getElementById('score').append(itemElem)
     }
   }
@@ -198,8 +198,6 @@ function endGame() {
     localStorage.setItem('score', JSON.stringify(score))
     renderscore()
     document.getElementById('item').value = ''
-    document.getElementById.("yourTime").value = ''
-    document.getElementById.("yourTimeModal").value = ''
   })
   renderscore()
 }
@@ -207,8 +205,8 @@ function endGame() {
 
 
 $("#restart").on("click", function () {
-  window.location.reload()
   gameCount = true;
+  window.location.reload()
 });
 
 function processResults() {
