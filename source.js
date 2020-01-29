@@ -163,7 +163,7 @@ $("#finish").on("click", endGame);
 
 
 function endGame() {
-
+  clearInterval(gameTimer);
   $("#main-game").hide();
   $(".jumbotron").hide()
 
