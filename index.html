@@ -43,12 +43,12 @@
         </div>
         <div class="top-buffer">
           <div>
-            <div class="well" id="answer-response">I am the explanation to the answer.</div>
+            <div class="well" id="answer-response">Explanation</div>
           </div>
         </div>
         <hr>
       </div>
-      <footer class="well"> 
+      <footer class="well">
         <div>
           <div>
             <button class="btn btn-primary pull-left" id="previousQuestion">Back</button>
@@ -66,41 +66,46 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>Question</th>
-                  <th>You answered</th>
-                  <th>Correct answer</th>
-                  <th>Status</th>
+                  <th><b></b>Question</th>
+                  <th><b></b>Your Answer</th>
+                  <th><b></b>Correct Answer</th>
+                  <th><b></b>Status</th>
                 </tr>
               </thead>
               <tbody id="result-rows">
               </tbody>
             </table>
+            <div><b>Your Time:<span id="yourTime"></span></b></div>
             <div class="restartBtn">
-              <div>
-                <button id="restart" class="btn btn-primary">Restart</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Results Summary</button>
+              <div class="bottom-butts">
+                <button id="restart" class="btn btn-primary">Restart Quiz</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Enter Your
+                  Info</button>
               </div>
             </div>
-            <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
               <div class="modal-dialog modal-notify modal-info" role="document">
-              Quiz Reults
-              <div class="modal-content text-center">
-                <!--Header-->
-                <div class="modal-header d-flex justify-content-center">
-                  <p class="heading">Your Summary</p>
-                </div>
-                <!-- Body -->
-                <div class="modal-body" id="resultSummary"> 
-                  
-                </div>
-                <!--Footer-->
-                <div class="modal-footer flex-center">
-                  <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Close</a>
+                Your Quiz Reults
+                <div class="modal-content text-center">
+                  <div class="modal-header d-flex justify-content-center">
+                    <div class="modal-body row shorter" id="resultSummary">Your Time: &nbsp;&nbsp;<span
+                        class="h5 shorter" id='yourTimeModal'></span></div>
+                    <div class="row shorter">
+                      <input class="form-control shorter" type="text" name="item" id="item" placeholder="Your Initials">
+                      <p class="shorter">
+                        <button id="addItem" class="shorter">Add Your Score</button>
+                      </p>
+                    </div>
+                  </div>
+                  <p class="heading">Highscores</p>
+                  <ul id="score"></ul>
+                  <div class="modal-footer flex-center">
+                    <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Close</a>
+                  </div>
                 </div>
               </div>
-              <!--/.Content-->
             </div>
-          </div>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+var gameCount = true;
 $('.grid').masonry({
   itemSelector: '.grid-item',
   columnWidth: '.grid-sizer',
@@ -30,7 +31,7 @@ var questionObject = [
     selected: null,
     // reason: "It's Juneau, which still has a population of less than 33,000. Yikes."
   }, {
-    question: `What type of html tag do you use in the HTML <code>\<head\></code> to reference a CSS stylesheet?`,
+    question: `What type of html tag do you use in the HTML head to reference a CSS stylesheet?`,
     answers: [
       { ansID: 1003, answer: "script tag" },
       { ansID: 1004, answer: "link tag" },
@@ -86,10 +87,10 @@ function populateQuestionDetails() {
   for (var i = 0; i < quesAnswers.length; i++) {
     $("#answers-container").append('<div class="answer" data-content="' + quesAnswers[i].ansID + '">' + quesAnswers[i].answer + '</div>');
   }
-  renderQuesControls();
+  renderQuestionControls();
 }
 
-function renderQuesControls() {
+function renderQuestionControls() {
   if (quesionIndex === 0) {
     $("#previousQuestion").hide();
     $("#nextQuestion").show();
@@ -121,7 +122,8 @@ function processAnswer() {
   if (selectedAnsID === correctAnsID) {
     $("#answer-response").html("<h4>Correct!</h4>");
   } else {
-    $("#answer-response").html("<h4>Sorry that's not right.</h4>");
+    quizTime = quizTime - 5
+    $("#answer-response").html("<h4>Sorry that's not right.<b> Lose 5 seconds...</h4>");
   }
 
   // $("#answer-response").append(questionObject[quesionIndex].reason);
@@ -135,21 +137,22 @@ function processAnswer() {
 
 
 
-function updateClock() {
+function countDown() {
   quizTime--;
   $("#timeContainer").html(quizTime);
   if (quizTime === 0) {
     clearInterval(gameTimer);
-    endGame();
+    if (gameCount) {
+      endGame();
+    }
   }
+
 }
 
 $("#start").on("click", function () {
   $("#splash-screen").hide();
   $("#main-game").show();
-
-  gameTimer = setInterval(updateClock, 1000);
-
+  gameTimer = setInterval(countDown, 1000);
   quesionIndex = 0;
   populateQuestionDetails(quesionIndex);
 });
@@ -161,21 +164,58 @@ $("#finish").on("click", endGame);
 
 
 function endGame() {
+  gamecount = false;
   $("#main-game").hide();
-  processResults();
   $(".jumbotron").hide()
+
+  processResults();
   $("#results-display").show();
+
+  let yourTime = parseInt(quizTime)
+  console.log("Completion Time: " + yourTime)
+  let yourScore = $("#yourTime").text()
+  $("#yourTime").text(yourTime)
+  $("#yourTimeModal").text(yourTime)
+
+  let highScore = $("#yourTimeModal").text() // change this to yourScore
+  let score = JSON.parse(localStorage.getItem('score')) || []
+  const renderscore = _ => {
+    document.getElementById('score').innerHTML = ''
+    for (let i = 0; i < score.length; i++) {
+      let itemElem = document.createElement('li')
+      itemElem.className = score[i].score ? 'complete' : 'incomplete'
+      itemElem.innerHTML = `Name: <b>${score[i].text}</b>  -  Highscore: <b>${highScore}</b>`
+      document.getElementById('score').append(itemElem)
+    }
+  }
+
+  document.getElementById('addItem').addEventListener('click', event => {
+    event.preventDefault()
+    score.push({
+      text: document.getElementById('item').value,
+      highScore: highScore
+    })
+    localStorage.setItem('score', JSON.stringify(score))
+    renderscore()
+    document.getElementById('item').value = ''
+    document.getElementById.("yourTime").value = ''
+    document.getElementById.("yourTimeModal").value = ''
+  })
+  renderscore()
 }
+
+
 
 $("#restart").on("click", function () {
   window.location.reload()
+  gameCount = true;
 });
 
 function processResults() {
   var status;
   var correct = 0;
   var incorrect = 0;
-  var score = 0;
+  // var score = 0;
 
   for (var i = 0; i < questionObject.length; i++) {
     if (questionObject[i].correct === questionObject[i].selected) {
@@ -204,8 +244,8 @@ function processResults() {
       }
     }
 
-
     $("#result-rows").append("<tr><td>" + questionObject[i].question + "</td><td>" + selectedText + "</td><td>" + correctText + "</td><td>" + status + "</td></tr>");
 
+    // <b> Your Time: </div></b>
   }
 }

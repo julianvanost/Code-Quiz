@@ -14,6 +14,14 @@
   border-radius: 3.3rem;
 }
 
+.bottom-butts {
+  margin-bottom: 1rem;
+}
+
+li {
+  list-style-type: none;
+}
+
 .btn-primary {
   font-size: large;
 }
@@ -157,14 +165,21 @@ h1 {
 }
 
 .btn-outline-info {
-  margin-bottom: -40px;
-  margin-right: -20px;
+  /* margin-bottom: -40px;
+  margin-right: -20px; */
 }
 
 code {
-  text-align: left!important;
-  display: inline-grid!important;
-  padding: 10px!important;
+  text-align: left !important;
+  display: inline-grid !important;
+  padding: 10px !important;
+}
+
+.shorter {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: .5rem;
 }
 
 .answer:before {
