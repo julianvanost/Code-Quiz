@@ -136,6 +136,13 @@ h1 {
   -o-transform: perspective(1px) translateZ(0);
 }
 
+.addScoreBtn {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: .5rem;
+}
+
 .answer:focus {
   outline: 2px solid #f1824d;
   outline-offset: 1px;
