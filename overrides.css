@@ -88,20 +88,6 @@ h1 {
   text-align: center !important;
 }
 
-.countdown-tooltip {
-  position: sticky;
-  float: right;
-  /* flex: auto; */
-  z-index: 0;
-  max-width: 100%;
-  padding: .5rem;
-  margin-top: .1rem;
-  font-size: .875rem;
-  line-height: 1;
-  color: #fff;
-  background-color: #dc3545;
-  border-radius: .2rem;
-}
 
 .subButt {
   border-radius: 5px;
@@ -120,6 +106,20 @@ h1 {
   margin: 10px;
 }
 
+.countdown-tooltip {
+  position: sticky;
+  float: right;
+  /* flex: auto; */
+  z-index: 0;
+  max-width: 100%;
+  padding: .5rem;
+  margin-top: .1rem;
+  font-size: .875rem;
+  line-height: 1;
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: .2rem;
+}
 .answer {
   display: inline-block;
   vertical-align: middle;
@@ -136,12 +136,6 @@ h1 {
   -o-transform: perspective(1px) translateZ(0);
 }
 
-.addScoreBtn {
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: .5rem;
-}
 
 .answer:focus {
   outline: 2px solid #f1824d;
@@ -171,10 +165,7 @@ h1 {
 
 }
 
-.btn-outline-info {
-  /* margin-bottom: -40px;
-  margin-right: -20px; */
-}
+
 
 code {
   text-align: left !important;

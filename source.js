@@ -29,7 +29,7 @@ var questionObject = [
     ],
     correct: 1002,
     selected: null,
-    // reason: "It's Juneau, which still has a population of less than 33,000. Yikes."
+    // reason: ""
   }, {
     question: `What type of html tag do you use in the HTML head to reference a CSS stylesheet?`,
     answers: [
@@ -40,7 +40,7 @@ var questionObject = [
     ],
     correct: 1004,
     selected: null,
-    // reason: "Alexander Hamilton was a major contrinutor to the strucure of the formative years of the US government. Arguably his largest contribution, apart from being a major contributor to maturing the constitution itself, was managing and growing the fledgling US credit system."
+    // reason: ""
   }, {
     question: `What will the following code output be? ` + `<br><code>const myVar = "zed"<br>let MyNextVar = 30<br><myVar = 'myVar string'<br>console.log(myVar + " " + (myNextVar))</code>`,
     answers: [
@@ -51,7 +51,7 @@ var questionObject = [
     ],
     correct: 1010,
     selected: null,
-    // reason: "Martin Van Buren was born in December 5th, 1782 in Kinderhook, NY. The first president not born under British rule and the first president not of British ancestry. He was of Dutch lineage."
+    // reason: ""
   }, {
     question: `What will the following Javascript output be? ` + `<br><code>var a, b = ""<br>a = 'string'<br>b = '90'<br>const d = 30<br>console.log(a + " - " + b + d)</code>`,
     answers: [
@@ -62,7 +62,7 @@ var questionObject = [
     ],
     correct: 1012,
     selected: null,
-    // reason: "Vermont was the 14th state which joined on March 4th, 1791."
+    // reason: ""
   }, {
     question: `Please calculate the following output: ` + `<br><code>user = 'Johnny'<br>for (i = 0; i < user.length; i++) {<br>&nbsp&nbsp&nbsp&nbsp console.log("User : " + i + " : ")<br>}<br><br><br>    </code>`,
     answers: [
@@ -73,7 +73,7 @@ var questionObject = [
     ],
     correct: 1017,
     selected: null,
-    // reason: "Eastern, Central, Mountain, Pacific, Alaskan, and Hawaii-Aleutian"
+    // reason: ""
   },
 ];
 
