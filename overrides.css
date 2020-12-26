@@ -9,6 +9,15 @@
   display: none;
 }
 
+.brand-logo {
+  width: 300px;
+  margin-top: 20px;
+  top: 40px;
+  position: static;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .jumbotron {
   margin-top: 1rem;
   border-radius: 3.3rem;
